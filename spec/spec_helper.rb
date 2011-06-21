@@ -1,12 +1,16 @@
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'rspec'
-require 'rest_engine'
+ENV['RAILS_ENV'] = 'test'
 
-# Requires supporting files with custom matchers and macros, etc,
-# in ./support/ and its subdirectories.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
+require File.expand_path('../test_app/config/environment', __FILE__)
 
-RSpec.configure do |config|
+require 'rspec/rails'
+require 'factory_girl'
+require 'factories'
+require 'database_helpers'
 
-end
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each{|f| require f}
+
+include DatabaseHelpers
+# Run any available migration
+puts 'Setting up database...'
+drop_all_tables
+migrate_database
