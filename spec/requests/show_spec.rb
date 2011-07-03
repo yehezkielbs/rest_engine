@@ -24,7 +24,7 @@ describe 'RestEngine Show' do
     it 'should return the requested data' do
       expected = {
           :success => true,
-          :data => @sale
+          :sales => [@sale]
       }.to_json
       response.body.should == expected
     end

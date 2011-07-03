@@ -24,7 +24,7 @@ describe 'RestEngine List' do
     it 'should return the requested data' do
       expected = {
           :success => true,
-          :data => @sales
+          :sales => @sales
       }.to_json
       response.body.should == expected
     end
@@ -48,7 +48,7 @@ describe 'RestEngine List' do
 
       expected = {
           :success => true,
-          :data => @sales[0..4]
+          :sales => @sales[0..4]
       }.to_json
       response.body.should == expected
     end
@@ -64,7 +64,7 @@ describe 'RestEngine List' do
 
       expected = {
           :success => true,
-          :data => @sales[5..6]
+          :sales => @sales[5..6]
       }.to_json
       response.body.should == expected
     end

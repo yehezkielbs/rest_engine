@@ -25,17 +25,19 @@ describe 'RestEngine Create' do
       response.headers['Content-Type'].should include 'application/json;'
     end
 
-    it 'should return the requested data' do
+    it 'should return the created data' do
       returned = JSON.parse(response.body)
       returned['success'].should be_true
-      returned['data']['name'].should == @sale[:name]
-      returned['data']['address'].should == @sale[:address]
-      DateTime.parse(returned['data']['sale_date']).should == DateTime.parse(@sale[:sale_date])
+
+      sale = returned['sales'][0]
+      sale['name'].should == @sale[:name]
+      sale['address'].should == @sale[:address]
+      DateTime.parse(sale['sale_date']).should == DateTime.parse(@sale[:sale_date])
     end
 
     it 'should create the data in database' do
       returned = JSON.parse(response.body)
-      created_sale = Sale.find(returned['data']['id'].to_i)
+      created_sale = Sale.find(returned['sales'][0]['id'].to_i)
       created_sale.name.should == @sale[:name]
       created_sale.address.should == @sale[:address]
       created_sale.sale_date.should == DateTime.parse(@sale[:sale_date])

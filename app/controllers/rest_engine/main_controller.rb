@@ -16,12 +16,12 @@ module RestEngine
 
       items = @model.all(options)
 
-      respond(:success => true, :data => items)
+      respond(:success => true, @resources => items)
     end
 
     def show
       item = @model.find(params[:id])
-      respond(:success => true, :data => item)
+      respond(:success => true, @resources => [item])
     end
 
     def destroy
@@ -36,7 +36,7 @@ module RestEngine
     def create
       item = @model.new(request.POST)
       if item.save
-        respond(:success => true, :message => "Created new #{@model_name} #{item.id}", :data => item)
+        respond(:success => true, :message => "Created new #{@model_name} #{item.id}", @resources => [item])
       else
         respond(:success => false, :message => "Failed to create #{@model_name}")
       end
@@ -45,7 +45,7 @@ module RestEngine
     def update
       item = @model.find(params[:id])
       if item.update_attributes(request.POST)
-        respond(:success => true, :message => "Updated #{@model_name} #{item.id}", :data => item)
+        respond(:success => true, :message => "Updated #{@model_name} #{item.id}", @resources => [item])
       else
         respond(:success => false, :message => "Failed to update #{@model_name}")
       end
@@ -61,7 +61,8 @@ module RestEngine
     end
 
     def get_model
-      @model_name = to_model_name(params[:resources])
+      @resources = params[:resources]
+      @model_name = to_model_name(@resources)
       @model = @model_name.constantize
     end
 

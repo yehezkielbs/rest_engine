@@ -30,10 +30,12 @@ describe 'RestEngine Update' do
     it 'should return the requested data' do
       returned = JSON.parse(response.body)
       returned['success'].should be_true
-      returned['data']['id'].should == @sale[:id]
-      returned['data']['name'].should == @new_sale[:name]
-      returned['data']['address'].should == @new_sale[:address]
-      DateTime.parse(returned['data']['sale_date']).should == DateTime.parse(@new_sale[:sale_date])
+
+      sale = returned['sales'][0]
+      sale['id'].should == @sale[:id]
+      sale['name'].should == @new_sale[:name]
+      sale['address'].should == @new_sale[:address]
+      DateTime.parse(sale['sale_date']).should == DateTime.parse(@new_sale[:sale_date])
     end
 
     it 'should update the data in database' do
