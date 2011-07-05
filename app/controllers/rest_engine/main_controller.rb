@@ -62,13 +62,8 @@ module RestEngine
 
     def get_model
       @resources = params[:resources]
-      @model_name = to_model_name(@resources)
+      @model_name = @resources.classify
       @model = @model_name.constantize
-    end
-
-    def to_model_name(resources_name)
-      parts = resources_name.split('~')
-      parts.map { |x| x == parts.last ? x.classify : x.camelize }.join('::')
     end
   end
 end

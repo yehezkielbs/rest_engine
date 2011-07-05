@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   scope 'api', :as => 'rest_engine' do
     controller 'rest_engine/main' do
-      get    '/:resources',     :to => :list,    :as => 'list'
-      post   '/:resources',     :to => :create,  :as => 'create'
-      get    '/:resources/:id', :to => :show,    :as => 'show'
-      put    '/:resources/:id', :to => :update,  :as => 'update'
-      delete '/:resources/:id', :to => :destroy, :as => 'destroy'
+      get    '/*resources/:id(.:format)', :to => :show,    :as => 'show',    :constraints => { :id => /\d+/ }
+      put    '/*resources/:id(.:format)', :to => :update,  :as => 'update',  :constraints => { :id => /\d+/ }
+      delete '/*resources/:id(.:format)', :to => :destroy, :as => 'destroy', :constraints => { :id => /\d+/ }
+      get    '/:resources(.:format)',     :to => :list,    :as => 'list',    :constraints => { :resources => /.+?/ }
+      post   '/:resources(.:format)',     :to => :create,  :as => 'create',  :constraints => { :resources => /.+?/ }
     end
   end
 end

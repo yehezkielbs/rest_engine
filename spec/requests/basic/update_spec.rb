@@ -32,7 +32,7 @@ describe 'RestEngine Update' do
       returned['success'].should be_true
 
       sale = returned['sales'][0]
-      sale['id'].should == @sale[:id]
+      sale['id'].should == @sale.id
       sale['name'].should == @new_sale[:name]
       sale['address'].should == @new_sale[:address]
       DateTime.parse(sale['sale_date']).should == DateTime.parse(@new_sale[:sale_date])
