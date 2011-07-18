@@ -9,11 +9,11 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yehezkiel Syamsuhadi"]
-  s.date = %q{2011-06-25}
+  s.date = %q{2011-07-18}
   s.email = %q{yehezkielbs@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     "app/controllers/rest_engine/application_controller.rb",
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}
-  s.summary = %q{A Rails 3 Engine to provide a restful API}
+  s.summary = %q{A Rails 3 engine that provide your Rails application a restful API}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

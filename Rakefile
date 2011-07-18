@@ -17,7 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "rest_engine"
   gem.homepage = "http://github.com/yehezkielbs/rest_engine"
   gem.license = "MIT"
-  gem.summary = %Q{A Rails 3 Engine to provide a restful API}
+  gem.summary = %Q{A Rails 3 engine that provide your Rails application a restful API}
   gem.email = "yehezkielbs@gmail.com"
   gem.authors = ["Yehezkiel Syamsuhadi"]
   gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
