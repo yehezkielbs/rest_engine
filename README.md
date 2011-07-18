@@ -24,13 +24,14 @@ Start the server:
     $ rails server
 
 Let's say you have a model `Customer`, you should now be able to access your customers:
-* To get a list of customers: GET http://localhost:3000/api/customers
-* To get a single customer: GET http://localhost:3000/api/customers/1
-* To create a new customer: POST http://localhost:3000/api/customers
-* To update a customer: PUT http://localhost:3000/api/customers/1
-* To delete a customer: DELETE http://localhost:3000/api/customers/1
 
-It also support name spaced model. For example if your model is `Product::Toy`, then the url would be: http://localhost:3000/api/product/toys
+* To get a list of customers: `GET http://localhost:3000/api/customers`
+* To get a single customer: `GET http://localhost:3000/api/customers/1`
+* To create a new customer: `POST http://localhost:3000/api/customers`
+* To update a customer: `PUT http://localhost:3000/api/customers/1`
+* To delete a customer: `DELETE http://localhost:3000/api/customers/1`
+
+It also support name spaced model. For example if your model is `Product::Toy`, then the url would be: `http://localhost:3000/api/product/toys`
 
 Or, to see the available routes:
 
