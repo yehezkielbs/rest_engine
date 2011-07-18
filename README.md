@@ -31,7 +31,7 @@ Let's say you have a model `Customer`, you should now be able to access your cus
 * To update a customer: `PUT http://localhost:3000/api/customers/1`
 * To delete a customer: `DELETE http://localhost:3000/api/customers/1`
 
-It also support name spaced model. For example if your model is `Product::Toy`, then the url would be: `http://localhost:3000/api/product/toys`
+It also support namespaced model. For example if your model is `Product::Toy`, then the url would be: `http://localhost:3000/api/product/toys`
 
 Or, to see the available routes:
 
