@@ -8,7 +8,7 @@ Installation
 
 In your `Gemfile`, add the following dependencies:
 
-    gem 'rest_engine', :git => 'git://github.com/yehezkielbs/rest_engine.git'
+    gem 'rest_engine'
 
 Run:
 
