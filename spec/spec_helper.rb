@@ -2,6 +2,7 @@ ENV['RAILS_ENV'] = 'test'
 
 require File.expand_path('../test_app/config/environment', __FILE__)
 
+require 'rspec'
 require 'rspec/rails'
 require 'factory_girl'
 require 'factories'

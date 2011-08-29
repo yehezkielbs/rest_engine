@@ -53,17 +53,29 @@ module RestEngine
 
     private
 
-    def respond data
+    def respond data, status = 200
       ActiveRecord::Base.include_root_in_json = false
       respond_to do |format|
-        format.any(:xml, :json) { render(request.format.to_sym => data) }
+        format.any(:xml, :json) { render(:status => status, request.format.to_sym => data) }
       end
     end
 
     def get_model
       @resources = params[:resources]
       @model_name = @resources.classify
-      @model = @model_name.constantize
+      if RestEngine.config.model_visible?(@model_name)
+        begin
+          @model = @model_name.constantize
+        rescue NameError
+          respond_with_not_found
+        end
+      else
+        respond_with_not_found
+      end
+    end
+
+    def respond_with_not_found
+      respond({:success => false, :message => %(The resources "#{@resources}" do not exist.)}, 404)
     end
   end
 end
