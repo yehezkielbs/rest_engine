@@ -1,0 +1,8 @@
+<%- ActiveRecord::Base.include_root_in_json = false -%>
+<%=
+    {
+        :success => @success,
+        :message => @success ? "Created new #{@resources} #{@item.id}" : "Failed to create #{@resources}",
+        @resources => @success ? [@item] : []
+    }.to_json.html_safe
+-%>

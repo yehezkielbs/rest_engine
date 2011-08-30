@@ -14,51 +14,29 @@ module RestEngine
         options[:offset] = (page - 1) * options[:limit]
       end
 
-      items = @model.all(options)
-
-      respond(:success => true, @resources => items)
+      @items = @model.all(options)
     end
 
     def show
-      item = @model.find(params[:id])
-      respond(:success => true, @resources => [item])
+      @item = @model.find(params[:id])
     end
 
     def destroy
-      item = @model.find(params[:id])
-      if item.destroy
-        respond(:success => true, :message => "Destroyed #{@model_name} #{item.id}")
-      else
-        respond(:success => false, :message => "Failed to destroy #{@model_name} #{item.id}")
-      end
+      @item = @model.find(params[:id])
+      @success = !!@item.destroy
     end
 
     def create
-      item = @model.new(request.POST)
-      if item.save
-        respond(:success => true, :message => "Created new #{@model_name} #{item.id}", @resources => [item])
-      else
-        respond(:success => false, :message => "Failed to create #{@model_name}")
-      end
+      @item = @model.new(request.POST)
+      @success = !!@item.save
     end
 
     def update
-      item = @model.find(params[:id])
-      if item.update_attributes(request.POST)
-        respond(:success => true, :message => "Updated #{@model_name} #{item.id}", @resources => [item])
-      else
-        respond(:success => false, :message => "Failed to update #{@model_name}")
-      end
+      @item = @model.find(params[:id])
+      @success = !!@item.update_attributes(request.POST)
     end
 
     private
-
-    def respond data, status = 200
-      ActiveRecord::Base.include_root_in_json = false
-      respond_to do |format|
-        format.any(:xml, :json) { render(:status => status, request.format.to_sym => data) }
-      end
-    end
 
     def get_model
       @resources = params[:resources]
@@ -67,15 +45,15 @@ module RestEngine
         begin
           @model = @model_name.constantize
         rescue NameError
-          respond_with_not_found
+          not_found
         end
       else
-        respond_with_not_found
+        not_found
       end
     end
 
-    def respond_with_not_found
-      respond({:success => false, :message => %(The resources "#{@resources}" do not exist.)}, 404)
+    def not_found
+      raise ActionController::RoutingError.new('The resources you were looking for do not exist')
     end
   end
 end

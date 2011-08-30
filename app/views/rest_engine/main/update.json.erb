@@ -1,0 +1,8 @@
+<%- ActiveRecord::Base.include_root_in_json = false -%>
+<%=
+    {
+        :success => @success,
+        :message => @success ? "Updated #{@resources} #{@item.id}" : "Failed to update #{@resources} #{@item.id}",
+        @resources => [@item]
+    }.to_json.html_safe
+-%>

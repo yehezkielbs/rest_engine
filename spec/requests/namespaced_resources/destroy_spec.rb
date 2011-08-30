@@ -24,7 +24,7 @@ describe 'RestEngine Destroy' do
     it 'should return the success message' do
       expected = {
           :success => true,
-          :message => "Destroyed Product::Toy #{@toy.id}"
+          :message => "Destroyed product/toys #{@toy.id}"
       }.to_json
       response.body.should == expected
     end

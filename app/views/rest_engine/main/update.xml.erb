@@ -1,0 +1,7 @@
+<%=
+    {
+        :success => @success,
+        :message => @success ? "Updated #{@resources} #{@item.id}" : "Failed to update #{@resources} #{@item.id}",
+        @resources => [@item]
+    }.to_xml.html_safe
+-%>

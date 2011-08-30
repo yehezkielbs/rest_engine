@@ -1,0 +1,7 @@
+<%- ActiveRecord::Base.include_root_in_json = false -%>
+<%=
+    {
+        :success => @success,
+        :message => @success ? "Destroyed #{@resources} #{@item.id}" : "Failed to destroy #{@resources} #{@item.id}"
+    }.to_json.html_safe
+-%>

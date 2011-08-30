@@ -1,0 +1,7 @@
+<%- ActiveRecord::Base.include_root_in_json = false -%>
+<%=
+    {
+        :success => true,
+        @resources => [@item]
+    }.to_json.html_safe
+-%>
