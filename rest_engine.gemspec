@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rest_engine}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yehezkiel Syamsuhadi"]
-  s.date = %q{2011-07-21}
+  s.date = %q{2011-08-30}
   s.email = %q{yehezkielbs@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -18,8 +18,19 @@ Gem::Specification.new do |s|
   s.files = [
     "app/controllers/rest_engine/application_controller.rb",
     "app/controllers/rest_engine/main_controller.rb",
+    "app/views/rest_engine/main/create.json.erb",
+    "app/views/rest_engine/main/create.xml.erb",
+    "app/views/rest_engine/main/destroy.json.erb",
+    "app/views/rest_engine/main/destroy.xml.erb",
+    "app/views/rest_engine/main/list.json.erb",
+    "app/views/rest_engine/main/list.xml.erb",
+    "app/views/rest_engine/main/show.json.erb",
+    "app/views/rest_engine/main/show.xml.erb",
+    "app/views/rest_engine/main/update.json.erb",
+    "app/views/rest_engine/main/update.xml.erb",
     "config/routes.rb",
     "lib/rest_engine.rb",
+    "lib/rest_engine/config.rb",
     "lib/rest_engine/engine.rb"
   ]
   s.homepage = %q{http://github.com/yehezkielbs/rest_engine}
