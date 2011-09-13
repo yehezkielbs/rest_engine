@@ -3,5 +3,5 @@
     {
         :success => true,
         @resources => [@item]
-    }.to_json.html_safe
+    }.to_json(:include => @associations).html_safe
 -%>

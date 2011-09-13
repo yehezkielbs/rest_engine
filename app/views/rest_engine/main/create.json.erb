@@ -4,5 +4,5 @@
         :success => @success,
         :message => @success ? "Created new #{@resources} #{@item.id}" : "Failed to create #{@resources}",
         @resources => @success ? [@item] : []
-    }.to_json.html_safe
+    }.to_json(:include => @associations).html_safe
 -%>

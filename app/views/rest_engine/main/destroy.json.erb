@@ -3,5 +3,5 @@
     {
         :success => @success,
         :message => @success ? "Destroyed #{@resources} #{@item.id}" : "Failed to destroy #{@resources} #{@item.id}"
-    }.to_json.html_safe
+    }.to_json(:include => @associations).html_safe
 -%>

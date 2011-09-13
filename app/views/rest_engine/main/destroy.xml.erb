@@ -2,5 +2,5 @@
     {
         :success => @success,
         :message => @success ? "Destroyed #{@resources} #{@item.id}" : "Failed to destroy #{@resources} #{@item.id}"
-    }.to_xml.html_safe
+    }.to_xml(:include => @associations).html_safe
 -%>

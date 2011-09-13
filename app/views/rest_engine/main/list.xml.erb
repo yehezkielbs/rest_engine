@@ -2,5 +2,5 @@
     {
         :success => true,
         @resources => @items
-    }.to_xml.html_safe
+    }.to_xml(:include => @associations).html_safe
 -%>

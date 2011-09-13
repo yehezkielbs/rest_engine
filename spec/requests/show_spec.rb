@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe 'GET a resource' do
-  def do_action resources_name, id
+  def do_action resources_name, id, options = {}
     uri = Rails.application.routes.url_helpers.rest_engine_show_path(
-        :resources => resources_name,
-        :id => id,
-        :format => 'json'
+        {
+            :resources => resources_name,
+            :id => id,
+            :format => 'json'
+        }.merge(options)
     )
     get(uri)
   end
@@ -31,6 +33,16 @@ describe 'GET a resource' do
 
   context 'when requesting a namespaced resource' do
     it_behaves_like 'successfuly request a resource', 'product/toy', :toy
+  end
+
+  context 'when includes associations' do
+    let(:sale) { Factory(:sale_with_5_items) }
+
+    it 'should return the requested data including the associated data' do
+      do_action(:sales, sale.id, {:include => 'associations'})
+      returned = JSON.parse(response.body)
+      returned['sales'][0]['sale_items'].length.should == 5
+    end
   end
 
   context 'when requesting a non-existing resource id' do

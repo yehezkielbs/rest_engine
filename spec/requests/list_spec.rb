@@ -1,12 +1,14 @@
 require 'spec_helper'
 
 describe 'GET resources' do
-  def do_action resources_name, page = nil, limit = nil
+  def do_action resources_name, page = nil, limit = nil, options = {}
     uri = Rails.application.routes.url_helpers.rest_engine_list_path(
-        :resources => resources_name,
-        :format => 'json',
-        :page => page,
-        :limit => limit
+        {
+            :resources => resources_name,
+            :format => 'json',
+            :page => page,
+            :limit => limit
+        }.merge(options)
     )
     get(uri)
   end
@@ -58,6 +60,19 @@ describe 'GET resources' do
           'sales' => sales[5..6]
       }.to_json
       response.body.should == expected
+    end
+  end
+
+  context 'when includes associations' do
+    before do
+      Sale.delete_all
+      Factory.create(:sale_with_5_items)
+    end
+
+    it 'should return the requested data including the associated data' do
+      do_action(:sales, nil, nil, {:include => 'associations'})
+      returned = JSON.parse(response.body)
+      returned['sales'][0]['sale_items'].length.should == 5
     end
   end
 

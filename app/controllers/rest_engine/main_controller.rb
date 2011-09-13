@@ -13,6 +13,7 @@ module RestEngine
         options[:limit] = params[:limit].to_i
         options[:offset] = (page - 1) * options[:limit]
       end
+      options[:include] = @associations if @associations
 
       @items = @model.all(options)
     end
@@ -49,6 +50,10 @@ module RestEngine
         end
       else
         not_found
+      end
+
+      if params[:include] == 'associations'
+        @associations = @model.reflect_on_all_associations.map {|a| a.name}
       end
     end
 
