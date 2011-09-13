@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rest_engine}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yehezkiel Syamsuhadi"]
-  s.date = %q{2011-08-30}
+  s.date = %q{2011-09-13}
   s.email = %q{yehezkielbs@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
