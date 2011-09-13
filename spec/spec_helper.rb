@@ -7,6 +7,7 @@ require 'rspec/rails'
 require 'factory_girl'
 require 'factories'
 require 'database_helpers'
+require 'shared_examples'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each{|f| require f}
 
